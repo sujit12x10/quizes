@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block scripts %}
+    <script src="{% static "quizes/quiz.js" %}" defer></script>
+{% endblock %}
+
+{% block title %}{{ obj.name }}{% endblock %}
+
+{% block content %}
+    <a style="font-family: Aclonica;" href="{% url "quizes:main-view" %}" class="btn btn-outline-secondary">&#x2190; Go Back</a>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <h3 style="font-family: Aclonica;"><br>{{ obj.name }}</br></h3>
+            <h6 style="color: #cc0000; font-family: Aclonica;">Score to pass: <b>{{ obj.required_score_to_pass }}</b>%</h6>
+        </div>
+        <div class="col text-end" id="timer-box">
+            
+        </div>
+    </div>
+
+
+    
+    <form id="quiz-form" class="mt-3 mb-3">
+        {% csrf_token %}
+        <div id="quiz-box"></div>
+        <button type="submit" class="btn btn-outline-success mt-3" style="font-family: Aclonica;">Save</button>
+    </form>
+
+    <div id="score-box">
+
+    </div>
+    <div id="result-box">
+
+    </div>
+{% endblock %}
